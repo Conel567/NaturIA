@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#285b39">
+
+<title>NaturIA | Conoce la naturaleza</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f7f0;
+  color: #263b2b;
+}
+
+header {
+  background: #285b39;
+  color: white;
+  padding: 22px 16px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+header p {
+  margin-top: 7px;
+  color: #e1f0df;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  box-shadow: 0 2px 8px #0001;
+}
+
+nav button {
+  border: none;
+  background: #e5efe2;
+  color: #285b39;
+  padding: 11px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+nav button.active {
+  background: #285b39;
+  color: white;
+}
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 20px 15px 40px;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+h2 {
+  color: #285b39;
+  margin-bottom: 14px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.hero {
+  background: #dcebd8;
+  padding: 30px 20px;
+  border-radius: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hero .plant {
+  font-size: 65px;
+}
+
+.hero h1 {
+  color: #285b39;
+  margin: 10px 0;
+  font-size: 30px;
+}
+
+.hero button,
+.action {
+  background: #285b39;
+  color: white;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 15px;
+  margin-top: 18px;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 17px;
+  box-shadow: 0 3px 10px #0001;
+}
+
+.card .emoji {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  color: #285b39;
+  margin-bottom: 8px;
+}
+
+.card button {
+  border: none;
+  color: white;
+  background: #54845b;
+  border-radius: 8px;
+  padding: 9px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.panel {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 15px;
+  box-shadow: 0 3px 10px #0001;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbdac7;
+  border-radius: 9px;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+input[type="file"] {
+  background: #f3f7f0;
+}
+
+#preview {
+  display: none;
+  max-width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+  margin: 15px auto;
+  border-radius: 12px;
+}
+
+.result, .answer {
+  background: #eaf3e6;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+footer {
+  text-align: center;
+  padding: 22px;
+  background: #285b39;
+  color: white;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🌿 NaturIA</div>
+  <p>La naturaleza también tiene inteligencia</p>
+</header>
+
+<nav>
+  <button class="active" onclick="showSection('inicio',this)">Inicio</button>
+  <button onclick="showSection('identificar',this)">Identificar</button>
+  <button onclick="showSection('catalogo',this)">Catálogo</button>
+  <button onclick="showSection('asistente',this)">Asistente IA</button>
+</nav>
+
+<main>
+
+<!-- INICIO -->
+<section id="inicio" class="section active">
+
+  <div class="hero">
+    <div class="plant">🌱</div>
+    <h1>Bienvenido a NaturIA</h1>
+    <p>
+      Descubre el mundo de las plantas mediante
+      la tecnología y la inteligencia artificial.
+    </p>
+
+    <button onclick="showSection('identificar')">
+      Conocer una planta
+    </button>
+  </div>
+
+  <h2>¿Qué puedes hacer en NaturIA?</h2>
+
+  <div class="cards">
+    <div class="card">
+      <div class="emoji">📷</div>
+      <h3>Identificar plantas</h3>
+      <p>Explora la identificación de plantas mediante fotografías.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🌻</div>
+      <h3>Conocer especies</h3>
+      <p>Consulta nombres, características y cuidados.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🤖</div>
+      <h3>Asistente inteligente</h3>
+      <p>Realiza preguntas sobre el mundo vegetal.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- IDENTIFICAR -->
+<section id="identificar" class="section">
+
+  <h2>📷 Identificador de plantas</h2>
+
+  <p>
+    Selecciona una fotografía de una planta
+    para comenzar el proceso de identificación.
+  </p>
+
+  <div class="panel">
+
+    <label for="photo"><b>Seleccionar fotografía:</b></label>
+    <input type="file" id="photo" accept="image/*">
+
+    <img id="preview" alt="Vista previa de la planta">
+
+    <p id="photoStatus">Todavía no has seleccionado una imagen.</p>
+
+    <button class="action" onclick="identifyPlant()">
+      Probar demostración
+    </button>
+
+    <div id="plantResult" class="result" hidden>
+    </div>
+
+  </div>
+
+  <p style="margin-top:15px;font-size:13px;color:#647568">
+    Nota: esta versión muestra una demostración.
+    Todavía no utiliza un modelo real de reconocimiento.
+  </p>
+
+</section>
+
+<!-- CATALOGO -->
+<section id="catalogo" class="section">
+
+  <h2>🌿 Catálogo de plantas</h2>
+
+  <p>Conoce algunas especies registradas en NaturIA.</p>
+
+  <input
+    type="search"
+    id="searchPlant"
+    placeholder="Buscar una planta..."
+    oninput="filterPlants()"
+  >
+
+  <div class="cards" id="plantCards">
+
+    <div class="card" data-name="sabila aloe vera">
+      <div class="emoji">🌵</div>
+      <h3>Sábila</h3>
+      <p><i>Aloe vera</i></p>
+      <p>Planta suculenta que almacena agua en sus hojas.</p>
+      <button onclick="plantInfo('Sábila','Aloe vera','Necesita buena iluminación y un sustrato con buen drenaje. Evita el exceso de agua.')">
+        Ver información
+      </button>
+    </div>
+
+    <div class="card" data-name="girasol helianthus annuus">
+      <div class="emoji">🌻</div>
+      <h3>Girasol</h3>
+      <p><i>Helianthus annuus</i></p>
+      <p>Planta conocida por su flor y su relación con la luz solar.</p>
+      <button onclick="plantInfo('Girasol','Helianthus annuus','Necesita buena exposición solar, agua suficiente y espacio para crecer.')">
+        Ver información
+      </button>
+    </div>
+
+    <div class="card" data-name="romero salvia rosmarinus">
+      <div class="emoji">🌿</div>
+      <h3>Romero</h3>
+      <p><i>Salvia rosmarinus</i></p>
+      <p>Planta aromática de hojas pequeñas.</p>
+      <button onclick="plantInfo('Romero','Salvia rosmarinus','Prefiere lugares soleados y suelos bien drenados. Tolera periodos moderados de sequía.')">
+        Ver información
+      </button>
+    </div>
+
+  </div>
+
+  <div id="catalogInfo" class="result" hidden></div>
+
+</section>
+
+<!-- ASISTENTE -->
+<section id="asistente" class="section">
+
+  <h2>🤖 Asistente NaturIA</h2>
+
+  <p>
+    Escribe una pregunta sobre plantas y
+    conoce cómo funcionará nuestro asistente.
+  </p>
+
+  <div class="panel">
+
+    <div id="chat">
+      <div class="answer">
+        🌱 ¡Hola! Soy el asistente de NaturIA.
+        Estoy aquí para ayudarte a conocer las plantas.
+      </div>
+    </div>
+
+    <textarea
+      id="question"
+      rows="3"
+      placeholder="Ejemplo: ¿Cómo puedo cuidar una sábila?"
+    ></textarea>
+
+    <button class="action" onclick="sendQuestion()">
+      Enviar pregunta
+    </button>
+
+  </div>
+
+  <p style="margin-top:15px;font-size:13px;color:#647568">
+    Nota: el chat de esta versión utiliza respuestas
+    de demostración, no un modelo de IA conectado.
+  </p>
+
+</section>
+
+</main>
+
+<footer>
+  <p><b>NaturIA © 2026</b></p>
+  <p>Conocimiento, tecnología y naturaleza.</p>
+  <p>Proyecto para la Feria de Ciencias</p>
+</footer>
+
+<script>
+
+// CAMBIAR SECCIONES
+function showSection(id, button) {
+  document.querySelectorAll('.section').forEach(section => {
+    section.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  if (button) {
+    button.classList.add('active');
+  } else {
+    document.querySelectorAll('nav button').forEach(btn => {
+      if (btn.getAttribute('onclick').includes(id)) {
+        btn.classList.add('active');
+      }
+    });
+  }
+
+  window.scrollTo(0, 0);
+}
+
+// PREVISUALIZAR FOTOGRAFIA
+document.getElementById('photo').addEventListener('change', function() {
+  const file = this.files[0];
+  const preview = document.getElementById('preview');
+
+  if (!file) return;
+
+  if (!file.type.startsWith('image/')) {
+    alert('Selecciona un archivo de imagen.');
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+    preview.src = event.target.result;
+    preview.style.display = 'block';
+    document.getElementById('photoStatus').textContent =
+      'Fotografía seleccionada correctamente.';
+  };
+
+  reader.readAsDataURL(file);
+});
+
+// DEMOSTRACION DE IDENTIFICACION
+function identifyPlant() {
+  const file = document.getElementById('photo').files[0];
+  const result = document.getElementById('plantResult');
+
+  if (!file) {
+    alert('Primero selecciona una fotografía.');
+    return;
+  }
+
+  result.hidden = false;
+  result.innerHTML = `
+    <b>🌱 Fotografía recibida</b>
+    <p>Tu imagen está lista para ser analizada.</p>
+    <p><b>Estado:</b> Demostración de la función.</p>
+    <p>En la siguiente etapa conectaremos
+    un sistema de reconocimiento de plantas
+    para obtener identificaciones reales.</p>
+  `;
+}
+
+// INFORMACION DEL CATALOGO
+function plantInfo(name, scientific, description) {
+  const box = document.getElementById('catalogInfo');
+
+  box.hidden = false;
+  box.innerHTML = `
+    <h3>${name}</h3>
+    <p><i>${scientific}</i></p>
+    <p>${description}</p>
+  `;
+
+  box.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// BUSCADOR
+function filterPlants() {
+  const query = document.getElementById('searchPlant')
+    .value.toLowerCase();
+
+  document.querySelectorAll('#plantCards .card').forEach(card => {
+    card.style.display =
+      card.dataset.name.includes(query) ? 'block' : 'none';
+  });
+}
+
+// ASISTENTE DE DEMOSTRACION
+function sendQuestion() {
+  const input = document.getElementById('question');
+  const chat = document.getElementById('chat');
+  const question = input.value.trim();
+
+  if (!question) {
+    alert('Escribe una pregunta primero.');
+    return;
+  }
+
+  const userMessage = document.createElement('div');
+  userMessage.className = 'answer';
+  userMessage.textContent = '👤 ' + question;
+  chat.appendChild(userMessage);
+
+  const response = document.createElement('div');
+  response.className = 'answer';
+
+  const text = question.toLowerCase();
+
+  if (text.includes('sabila') || text.includes('sábila')) {
+    response.textContent =
+      '🌵 La sábila (Aloe vera) es una planta suculenta. Necesita buena iluminación, drenaje y riego moderado.';
+
+  } else if (text.includes('girasol')) {
+    response.textContent =
+      '🌻 El girasol (Helianthus annuus) necesita buena luz solar y espacio para desarrollarse.';
+
+  } else if (text.includes('romero')) {
+    response.textContent =
+      '🌿 El romero (Salvia rosmarinus) es una planta aromática que prefiere lugares soleados y suelo bien drenado.';
+
+  } else {
+    response.textContent =
+      '🌱 Gracias por tu pregunta. En esta versión de demostración todavía no tengo una respuesta para ella. En una siguiente etapa conectaré un modelo de inteligencia artificial.';
+  }
+
+  chat.appendChild(response);
+  input.value = '';
+  chat.scrollIntoView({behavior:'smooth', block:'end'});
+}
+
+</script>
+
+</body>
+</html>
